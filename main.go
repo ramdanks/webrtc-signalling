@@ -1,15 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 	"github.com/ramdanks/webrtc-signalling/server"
-)
-
-const (
-	address string = ":3003"
 )
 
 func main() {
@@ -28,6 +26,13 @@ func main() {
 			server.ServeWebSocketFromHTTP(w, r, s)
 		})
 	}
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3003"
+	}
+	address := "0.0.0.0:" + port
+	fmt.Printf("Listening on: %v", address)
 
 	err := http.ListenAndServe(address, r)
 	if err != nil {
