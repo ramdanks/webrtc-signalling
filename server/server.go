@@ -28,11 +28,11 @@ type WebSocketServer struct {
 	WebSocketServerInterface
 }
 
-func (this *WebSocketServer) EndpointPattern() string {
+func (server *WebSocketServer) EndpointPattern() string {
 	return "/"
 }
 
-func (this *WebSocketServer) ServeWebSocket(wsi *WebSocketInfo) {
+func (server *WebSocketServer) ServeWebSocket(wsi *WebSocketInfo) {
 	log.Printf("Unimplemented ServeWebSocket: %v", wsi.request.URL)
 }
 
